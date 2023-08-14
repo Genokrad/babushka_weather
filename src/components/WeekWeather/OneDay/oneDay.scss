@@ -1,0 +1,31 @@
+.day-card {
+  min-width: 160px;
+  // height: 272px;
+  background-color: var(--background-color-yellow);
+  border-radius: 80px;
+  padding: 32px 32px 48px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  &__box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__day {
+    font-family: 'Manrope-SemiBold';
+    font-size: 32px;
+    line-height: 1;
+  }
+  &__image {
+    width: 96px;
+    height: 96px;
+  }
+  &__temp {
+    font-family: 'Manrope-Bold';
+    font-size: 48px;
+    line-height: 1;
+  }
+}

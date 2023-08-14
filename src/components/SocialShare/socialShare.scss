@@ -1,0 +1,15 @@
+.social-share {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  &__text {
+    font-family: 'Manrope-Regular';
+    font-size: 18px;
+    color: var(--text-white-color);
+  }
+  &__list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}

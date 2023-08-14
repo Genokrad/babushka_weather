@@ -1,0 +1,32 @@
+.input {
+  position: relative;
+  width: 100%;
+  max-width: 526px;
+  &__field {
+    border: none;
+    padding-left: 50px;
+    background-color: var(--background-color-light-gray);
+    // padding: 16px 16px 16px 50px;
+    line-height: 1.5;
+    font-size: 18px;
+    height: 100%;
+    width: 100%;
+    border-radius: 40px;
+    transition: 0.3s;
+    &:hover {
+      background-color: var(--background-color-white);
+    }
+    &:focus {
+      background-color: var(--background-color-white);
+    }
+  }
+  &__icon {
+    width: 24px;
+    height: 24px;
+    fill: black;
+    position: absolute;
+    margin: 16px;
+    left: 0;
+    top: 0;
+  }
+}

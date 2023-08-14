@@ -1,0 +1,34 @@
+:root {
+  /* fonts */
+  --main-font: 'Inter', sans-serif;
+  --secondary-font: 'Coolvetica', sans-serif;
+
+  /* text */
+  --text-red-collor: #ef2c45;
+  --text-black-collor: #430c16;
+  --text-white-color: #ffffff;
+  --text-green-color: #5f7527;
+
+  /* backgroung */
+  --background-color-green: #89a755;
+  --background-color-orange: #ffb642;
+  --background-color-dark-orange: #e69b23;
+  --background-color-light-gray: #f0f0f0;
+  --background-color-white: #ffffff;
+  --background-color-yellow: #f7faee;
+  /* tasks */
+
+  /* Buttons */
+  --button-bcg-green: #a0c165;
+  --button-bcg-yellow: rgba(214, 231, 170, 0.2);
+
+  /* calendar */
+  --border-color-green: #89a755;
+  /* other */
+
+  /* form */
+
+  /* animation */
+
+  /* backgroung button */
+}

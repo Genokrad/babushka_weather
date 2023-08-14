@@ -1,16 +1,18 @@
+import { Routes, Route } from 'react-router-dom';
+
+import { Layout } from './Layout';
+import { MainPage, TodayPage, TomorrowPage, WeekPage } from 'Pages';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="main" element={<MainPage />}>
+          <Route path="today" element={<TodayPage />} />
+          <Route path="tomorrow" element={<TomorrowPage />} />
+          <Route path="week" element={<WeekPage />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 };

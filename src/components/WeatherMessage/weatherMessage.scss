@@ -1,0 +1,12 @@
+.message {
+  margin-top: 32px;
+  padding: 16px 32px;
+  border-radius: 24px;
+  background-color: var(--background-color-orange);
+  &__text {
+    font-family: 'Manrope-Medium';
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-white-color);
+  }
+}
