@@ -1,5 +1,5 @@
 import './dashboard.scss';
-import { drizzle } from 'assets';
+
 import { OneDayWeather } from 'components/OneDayWeather';
 import { WeatherIndicator } from 'components/WeatherIndicator';
 import { WeatherMessage } from 'components/WeatherMessage';
