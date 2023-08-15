@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/babushka_weather/static/css/main.ae5d7081.css",
-    "main.js": "/babushka_weather/static/js/main.339a4beb.js",
+    "main.css": "/babushka_weather/static/css/main.2ccd5a34.css",
+    "main.js": "/babushka_weather/static/js/main.5179035e.js",
     "static/media/Playball-Regular.ttf": "/babushka_weather/static/media/Playball-Regular.71988dd7eaaef16a92b6.ttf",
     "static/media/grandmother.svg": "/babushka_weather/static/media/grandmother.f9a41bfa9783f60d62be85181a470f01.svg",
     "static/media/Manrope-SemiBold.ttf": "/babushka_weather/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
@@ -24,6 +24,7 @@
     "static/media/mostly-cloudy.svg": "/babushka_weather/static/media/mostly-cloudy.a99c00ce8b79e42fc39953201180f5b6.svg",
     "static/media/tornado.svg": "/babushka_weather/static/media/tornado.ad0a2557690e21835f235498ed50ccbb.svg",
     "static/media/Instagram.svg": "/babushka_weather/static/media/Instagram.503263bfdeb0527cb190c021db8e89d3.svg",
+    "static/media/sprite.svg": "/babushka_weather/static/media/sprite.307631acc052533119c5fe77b0ad446d.svg",
     "static/media/LinkedIn.svg": "/babushka_weather/static/media/LinkedIn.1d6403e702d9971367300d56d8d192cc.svg",
     "static/media/cold.svg": "/babushka_weather/static/media/cold.f458b1dccde543a1b1a896b0d23600f4.svg",
     "static/media/mark.svg": "/babushka_weather/static/media/mark.3d570bc3792fe8002c27b0127619c5e2.svg",
@@ -32,15 +33,14 @@
     "static/media/showers.svg": "/babushka_weather/static/media/showers.b067dee1f3edaea55d3ce9eeb0ffa340.svg",
     "static/media/Telegram.svg": "/babushka_weather/static/media/Telegram.e4ed927c0e4a1c44f45c946f0d2cacba.svg",
     "static/media/cloudy.svg": "/babushka_weather/static/media/cloudy.9f722e6040452984837fa14aaead37ad.svg",
-    "static/media/sprite.svg": "/babushka_weather/static/media/sprite.35d35b7cbd545a2b0fbd2aaea3405945.svg",
     "static/media/foggy.svg": "/babushka_weather/static/media/foggy.93f7e8d3e2b835c960b551d35bfa5298.svg",
     "static/media/search.svg": "/babushka_weather/static/media/search.5229408fcc63d26e88f28d1020797a2e.svg",
     "static/media/Facebook.svg": "/babushka_weather/static/media/Facebook.758523c318f0fad5c2b49bd0b297a860.svg",
-    "main.ae5d7081.css.map": "/babushka_weather/static/css/main.ae5d7081.css.map",
-    "main.339a4beb.js.map": "/babushka_weather/static/js/main.339a4beb.js.map"
+    "main.2ccd5a34.css.map": "/babushka_weather/static/css/main.2ccd5a34.css.map",
+    "main.5179035e.js.map": "/babushka_weather/static/js/main.5179035e.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae5d7081.css",
-    "static/js/main.339a4beb.js"
+    "static/css/main.2ccd5a34.css",
+    "static/js/main.5179035e.js"
   ]
 }
