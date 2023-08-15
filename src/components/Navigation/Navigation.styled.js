@@ -31,6 +31,7 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const SyledNav = styled('nav')`
+  margin-top: 32px;
   border-radius: 40px;
   background-color: var(--button-bcg-yellow);
 

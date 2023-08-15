@@ -35,11 +35,6 @@
     cursor: pointer;
     &:hover {
       background-color: var(--background-color-orange);
-      // animation: changeBgColor 0.2s ease-in-out;
-      // animation-fill-mode: both;
-      // animation-duration: 0.2s;
-      // animation-timing-function: linear;
-      // animation-name: changeBgColor;
     }
     &:active {
       background-color: var(--background-color-dark-orange);
@@ -47,6 +42,7 @@
   }
   &__input-wrapper {
     width: 100%;
+    max-width: 700px;
   }
   &__form {
     display: flex;
@@ -55,13 +51,3 @@
     gap: 10px;
   }
 }
-
-// @keyframes changeBgColor {
-//   0% {
-//     background-color: var(--background-color-green);
-//   }
-
-//   100% {
-//     background-color: var(--background-color-orange);
-//   }
-// }

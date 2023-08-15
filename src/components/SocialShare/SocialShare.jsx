@@ -17,7 +17,6 @@ const SocialShare = () => {
       <ul className="social-share__list">
         {socials.map(social => (
           <li key={social}>
-            {console.log(social)}
             <img src={social} alt="social" />
           </li>
         ))}

@@ -4,5 +4,10 @@
 <path fill="none" stroke="#430c16" style="stroke: var(--color1, #430c16)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.56" d="M13.938 25.494c6.284 0 11.378-5.094 11.378-11.378s-5.094-11.378-11.378-11.378c-6.284 0-11.378 5.094-11.378 11.378s5.094 11.378 11.378 11.378z"></path>
 <path fill="none" stroke="#430c16" style="stroke: var(--color1, #430c16)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.56" d="M28.16 28.339l-6.187-6.187"></path>
 </symbol>
+<symbol id="arrowRight" viewBox="0 0 31 32">
+<path stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="4" stroke-width="2.56" d="M16.050 5.17l10.83 10.83-10.83 10.83"></path>
+<path stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="4" stroke-width="2.56" d="M25.983 16h-22.143"></path>
+</symbol>
+
 </defs>
 </svg>
