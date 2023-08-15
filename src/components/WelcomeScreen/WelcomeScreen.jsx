@@ -64,7 +64,7 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter }) => {
       .get(apiUrl)
       .then(response => {
         const weather = response.data;
-        console.log(weather);
+
         weatherSetter(weather);
       })
       .catch(error => {

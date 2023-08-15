@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setTodayWeather } from '../../features/weather/weatherSlice';
 
 import { WelcomeScreen } from 'components/WelcomeScreen';
 
 const Layout = () => {
+  const dispatch = useDispatch();
+
   const [isCity, setIsCity] = useState(false);
-  const [weather, setWeather] = useState(null);
 
   const weatherSetter = obj => {
-    setWeather(obj);
-    console.log(obj);
+    dispatch(setTodayWeather(obj));
   };
 
   const navigate = useNavigate();
 
   const togleWelocmeScreen = () => {
-    // event.preventDefault();
     setIsCity(true);
     navigate('main/today');
   };

@@ -1,4 +1,5 @@
 // import { drizzle } from 'assets';
+
 import './oneDayWeather.scss';
 
 const OneDayWeather = ({ temperture, icone }) => {
