@@ -28,7 +28,7 @@ const Hero = () => {
         <div className="hero__temperture-wrapper">
           <img className="hero__temperture-image" src={drizzle} alt="weather" />
           <p className="hero__temperture">
-            {Math.floor(todayWeather.main.temp - 273.15)}°<span>C</span>
+            {Math.floor(todayWeather?.main?.temp - 273.15)}°<span>C</span>
           </p>
           <img className="hero__image" src={grandmother} alt="grandmother" />
         </div>
