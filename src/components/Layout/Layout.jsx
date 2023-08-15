@@ -9,7 +9,7 @@ const Layout = () => {
 
   const weatherSetter = obj => {
     setWeather(obj);
-    console.log(weather);
+    console.log(obj);
   };
 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Layout = () => {
         />
       )}
 
-      <Outlet />
+      {isCity && <Outlet />}
     </>
   );
 };
