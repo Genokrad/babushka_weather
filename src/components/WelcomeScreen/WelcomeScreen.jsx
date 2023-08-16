@@ -19,7 +19,7 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter }) => {
 
   useEffect(() => {
     if (inputValue) {
-      const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${KEY}`;
+      const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${KEY}`;
 
       axios
         .get(apiUrl)
