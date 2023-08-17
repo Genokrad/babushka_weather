@@ -37,7 +37,6 @@ const Dashboard = ({ temperture, objIndication, pageType }) => {
   }, []);
 
   const loading = useSelector(state => state.weather.loading);
-  console.log(loading);
 
   const todayCiti = useSelector(state => state.weather.currentCity);
 
@@ -46,13 +45,13 @@ const Dashboard = ({ temperture, objIndication, pageType }) => {
       {!showHero && (
         <Location todayCiti={todayCiti} fontColor={'#000'} pad={'24px'} />
       )}
-      {showHero && temperture && <WeatherMessage />}
+      {showHero && <WeatherMessage text={'text'} />}
       <div className="indicators">
         {loading && <Loader />}
 
         <OneDayWeather temperture={temperture} pageType={pageType} />
         <WeatherIndicator objIndication={objIndication} />
-        {!showHero && <GrandmaMessage />}
+        {!showHero && <GrandmaMessage text={'text'} />}
       </div>
     </>
   );

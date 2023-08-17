@@ -27,8 +27,6 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
   const city = useSelector(state => state.weather.currentCity);
   // const loading = useSelector(state => state.weather.loading);
 
-  // console.log(loading);
-
   useEffect(() => {
     if (inputValue) {
       const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${KEY}`;
@@ -37,7 +35,7 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
         .get(apiUrl)
         .then(response => {
           const cities = response.data;
-          console.log(cities);
+
           setSuggestions(cities);
         })
         .catch(error => {
@@ -79,7 +77,7 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
       .then(response => {
         dispatch(setLoading());
         const weather = response.data;
-        console.log(weather);
+
         weatherSetter(weather);
       })
       .catch(error => {
@@ -92,24 +90,30 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
   const fetchWeather = event => {
     event.preventDefault();
 
-    console.log(suggestions);
     if (!suggestions) {
+      Notiflix.Notify.failure(
+        'Еhe input field is empty, enter the name of the city!'
+      );
+      return;
+    }
+    if (suggestions.length < 1) {
+      Notiflix.Notify.failure('There is no city with this name!');
       return;
     }
 
-    if (city.lat === 0 && city.lon === 0) {
+    if (city?.lat === 0 && city?.lon === 0) {
       citySetter({
-        lat: suggestions[0].lat,
-        lon: suggestions[0].lon,
-        name: suggestions[0].name,
+        lat: suggestions[0]?.lat,
+        lon: suggestions[0]?.lon,
+        name: suggestions[0]?.name,
       });
 
-      fetch(suggestions[0].lat, suggestions[0].lon);
+      fetch(suggestions[0]?.lat, suggestions[0]?.lon);
       togleWelocmeScreen();
       return;
     }
 
-    fetch(city.lat, city.lon);
+    fetch(city?.lat, city?.lon);
     togleWelocmeScreen();
   };
 

@@ -42,7 +42,7 @@ const WeekWeather = () => {
       .then(response => {
         dispatch(setLoading());
         const weeklyWeather = response.data;
-        console.log(weeklyWeather);
+
         setWeekWeather(weeklyWeather);
       })
       .catch(error => {

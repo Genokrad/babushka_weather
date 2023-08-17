@@ -3,6 +3,7 @@
 import { useSelector } from 'react-redux';
 import './oneDayWeather.scss';
 import { drizzle } from 'assets';
+import { codeToIcon } from 'utils/converters';
 
 const OneDayWeather = ({ temperture, pageType }) => {
   const description = {
@@ -17,13 +18,13 @@ const OneDayWeather = ({ temperture, pageType }) => {
 
   return (
     <div className="todayWeather">
-      {console.log('description', description)}
       <img
         className="todayWeather__image"
         src={
-          description
-            ? `https://openweathermap.org/img/wn/${description?.icon}@2x.png `
-            : drizzle
+          description ? codeToIcon(description?.icon) : drizzle
+          // description
+          //   ? `https://openweathermap.org/img/wn/${description?.icon}@2x.png `
+          //   : drizzle
         }
         alt="mark"
       />

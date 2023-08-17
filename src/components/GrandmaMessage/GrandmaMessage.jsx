@@ -2,7 +2,7 @@ const { grandmother } = require('assets');
 const { SocialShare } = require('components/SocialShare');
 const { WeatherMessage } = require('components/WeatherMessage');
 
-const GrandmaMessage = () => {
+const GrandmaMessage = ({ text }) => {
   return (
     <>
       <WeatherMessage />

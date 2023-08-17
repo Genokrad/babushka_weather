@@ -1,3 +1,15 @@
+import {
+  clearCloudy,
+  cloudy,
+  foggy,
+  isolatedThunderstroms,
+  partlyCloudy,
+  showers,
+  snow,
+  sunny,
+  thunderstroms,
+} from 'assets';
+
 const convertToDate = timestamp => {
   const date = new Date(timestamp * 1000);
   const dayOfMonth = date.getDate();
@@ -37,6 +49,31 @@ const formatDate = date => {
   return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
 };
 
+const codeToIcon = mark => {
+  let some = {
+    i01d: sunny,
+    i02d: clearCloudy,
+    i03d: cloudy,
+    i04d: partlyCloudy,
+    i09d: thunderstroms,
+    i10d: showers,
+    i11d: isolatedThunderstroms,
+    i13d: snow,
+    i50d: foggy,
+    i01n: sunny,
+    i02n: clearCloudy,
+    i03n: cloudy,
+    i04n: partlyCloudy,
+    i09n: thunderstroms,
+    i10n: showers,
+    i11n: isolatedThunderstroms,
+    i13n: snow,
+    i50n: foggy,
+  };
+
+  return some[`i${mark}`];
+};
+
 export {
   convertToDate,
   dateToDayOfWeek,
@@ -44,4 +81,5 @@ export {
   KelvinToCelsium,
   metersToKilometers,
   formatDate,
+  codeToIcon,
 };

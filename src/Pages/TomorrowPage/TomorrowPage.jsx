@@ -36,7 +36,7 @@ const TomorrowPage = () => {
       .then(response => {
         dispatch(setLoading());
         const tomorrowWeather = response.data.daily[1];
-        console.log(tomorrowWeather);
+
         setTomorrowWeather([
           {
             text: 'Feels like:',

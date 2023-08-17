@@ -1,6 +1,7 @@
 // import { nanoid } from 'nanoid';
 import './oneDay.scss';
 import {
+  codeToIcon,
   // convertToDate,
   dateToDayOfWeek,
   // DateNow,
@@ -17,7 +18,7 @@ const OneDay = ({ day }) => {
       <div className="day-card__box">
         <img
           className="day-card__image"
-          src={`https://openweathermap.org/img/wn/${day?.weather[0]?.icon}@2x.png `}
+          src={codeToIcon(day?.weather[0]?.icon)}
           alt="mark"
         />
         <p className="day-card__temp">{KelvinToCelsium(day.temp.day)}°</p>

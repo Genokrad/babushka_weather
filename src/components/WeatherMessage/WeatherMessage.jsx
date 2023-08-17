@@ -1,6 +1,6 @@
 import './weatherMessage.scss';
 
-const WeatherMessage = () => {
+const WeatherMessage = ({ text }) => {
   return (
     <div className="message">
       <p className="message__text">
