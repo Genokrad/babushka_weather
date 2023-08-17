@@ -4,11 +4,14 @@ import './weekWeather.scss';
 import { OneDay } from './OneDay';
 import { WeatherMessage } from 'components/WeatherMessage';
 import { nanoid } from 'nanoid';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DateNow, convertToDate } from 'utils/converters';
 import { GrandmaMessage } from 'components/GrandmaMessage';
+import { setLoading } from 'features/weather/weatherSlice';
+import { Loader } from 'components/Loader';
+import Notiflix from 'notiflix';
 
 // const week = [
 //   { day: 'Tue', icon: drizzle, temp: 27 },
@@ -24,6 +27,7 @@ const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; // blocked
 // const KEY = '2ad6b3b56adc137acaefd4b3855025cf--temporry';
 
 const WeekWeather = () => {
+  const dispatch = useDispatch();
   const currentCity = useSelector(state => state.weather.currentCity);
 
   const [weekWeather, setWeekWeather] = useState(null);
@@ -36,13 +40,17 @@ const WeekWeather = () => {
     axios
       .get(apiUrl)
       .then(response => {
+        dispatch(setLoading());
         const weeklyWeather = response.data;
         console.log(weeklyWeather);
         setWeekWeather(weeklyWeather);
       })
       .catch(error => {
         console.error('Error fetching data:', error.response);
-      });
+        Notiflix.Notify.failure(error.message);
+      })
+      .finally(dispatch(setLoading()));
+    // eslint-disable-next-line
   }, [currentCity]);
 
   useEffect(() => {
@@ -59,11 +67,15 @@ const WeekWeather = () => {
     };
   }, []);
 
+  const loading = useSelector(state => state.weather.loading);
+
   return (
     <>
       {showMessage && <WeatherMessage />}
+      {loading && <Loader />}
 
       <ul className="week-list">
+        {/* <Loader /> */}
         {weekWeather &&
           weekWeather.daily.map(day =>
             convertToDate(day.dt) === convertToDate(DateNow()) ? null : (

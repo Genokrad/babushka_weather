@@ -32,6 +32,9 @@ import linkedIn from './socialMediaIcon/LinkedIn.svg';
 import telegram from './socialMediaIcon/Telegram.svg';
 import whatsapp from './socialMediaIcon/Whatsapp.svg';
 
+// animations
+import loader from './animations/loader.riv';
+
 export {
   grandmother,
   clearCloudy,
@@ -59,4 +62,5 @@ export {
   linkedIn,
   telegram,
   whatsapp,
+  loader,
 };

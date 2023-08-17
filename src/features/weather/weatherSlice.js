@@ -7,6 +7,7 @@ const initialState = {
     lon: 0,
   },
   tomorrow: null,
+  loading: false,
 };
 
 export const weatherSlice = createSlice({
@@ -22,10 +23,13 @@ export const weatherSlice = createSlice({
     setTomorrow: (state, action) => {
       state.tomorrow = action.payload;
     },
+    setLoading: state => {
+      state.loading = !state.loading;
+    },
   },
 });
 
-export const { setTodayWeather, setCurrentCity, setTomorrow } =
+export const { setTodayWeather, setCurrentCity, setTomorrow, setLoading } =
   weatherSlice.actions;
 
 export default weatherSlice.reducer;

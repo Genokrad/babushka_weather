@@ -5,8 +5,10 @@ import { Button } from 'components/Button';
 import './welcomeScreen.scss';
 
 import { Input } from 'components/Input';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { grandmother } from 'assets';
+import { setLoading } from 'features/weather/weatherSlice';
+import Notiflix from 'notiflix';
 
 // const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; // blocked
 const KEY = 'd66525f3861c64edb0280784b35cad3b';
@@ -20,7 +22,12 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
     lat: null,
   });
 
+  const dispatch = useDispatch();
+
   const city = useSelector(state => state.weather.currentCity);
+  // const loading = useSelector(state => state.weather.loading);
+
+  // console.log(loading);
 
   useEffect(() => {
     if (inputValue) {
@@ -34,7 +41,8 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
           setSuggestions(cities);
         })
         .catch(error => {
-          console.error('Error fetching data:', error.response);
+          console.error('Error fetching data:', error.message);
+          Notiflix.Notify.failure(error.message);
         });
     } else {
       setSuggestions(null);
@@ -69,13 +77,16 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
     axios
       .get(apiUrl)
       .then(response => {
+        dispatch(setLoading());
         const weather = response.data;
         console.log(weather);
         weatherSetter(weather);
       })
       .catch(error => {
         console.error('Error fetching data:', error.response);
-      });
+        Notiflix.Notify.failure(error.message);
+      })
+      .finally(dispatch(setLoading()));
   };
 
   const fetchWeather = event => {

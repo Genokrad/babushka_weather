@@ -14,31 +14,7 @@
     line-height: 1.25;
     color: var(--text-white-color);
   }
-  &__content-wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
-  &__location-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  &__location-image {
-    width: 22px;
-    height: 26px;
-  }
-  &__city {
-    font-family: 'Manrope-SemiBold';
-    font-size: 20px;
-    line-height: 1.5;
-    color: var(--text-white-color);
-  }
-  &__date-text {
-    font-family: 'Manrope-Regular';
-    font-size: 20px;
-    line-height: 1.5;
-    color: var(--text-white-color);
-  }
+
   &__temperture-wrapper {
     display: flex;
     flex-direction: column;

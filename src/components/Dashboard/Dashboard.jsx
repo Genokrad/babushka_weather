@@ -6,6 +6,10 @@ import { WeatherMessage } from 'components/WeatherMessage';
 import { useEffect, useState } from 'react';
 
 import { GrandmaMessage } from 'components/GrandmaMessage';
+import { useSelector } from 'react-redux';
+import { Loader } from 'components/Loader';
+import { Location } from 'components/Location';
+import { mark } from 'assets';
 
 // const objIndication = [
 //   { text: 'Chance of precipitation:', value: '42%' },
@@ -33,10 +37,20 @@ const Dashboard = ({ temperture, objIndication, pageType }) => {
     };
   }, []);
 
+  const loading = useSelector(state => state.weather.loading);
+  console.log(loading);
+
+  const todayCiti = useSelector(state => state.weather.currentCity);
+
   return (
     <>
-      {showHero && <WeatherMessage />}
+      {!showHero && (
+        <Location todayCiti={todayCiti} fontColor={'#000'} pad={'24px'} />
+      )}
+      {showHero && temperture && <WeatherMessage />}
       <div className="indicators">
+        {loading && <Loader />}
+
         <OneDayWeather temperture={temperture} pageType={pageType} />
         <WeatherIndicator objIndication={objIndication} />
         {!showHero && <GrandmaMessage />}

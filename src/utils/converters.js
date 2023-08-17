@@ -32,10 +32,16 @@ const metersToKilometers = meters => {
   return kilometers;
 };
 
+const formatDate = date => {
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+};
+
 export {
   convertToDate,
   dateToDayOfWeek,
   DateNow,
   KelvinToCelsium,
   metersToKilometers,
+  formatDate,
 };

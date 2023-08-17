@@ -1,7 +1,8 @@
 // import { sunny } from 'assets';
 import axios from 'axios';
 import { Dashboard } from 'components/Dashboard';
-import { setTomorrow } from 'features/weather/weatherSlice';
+import { setLoading, setTomorrow } from 'features/weather/weatherSlice';
+import Notiflix from 'notiflix';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { KelvinToCelsium } from 'utils/converters';
@@ -29,9 +30,11 @@ const TomorrowPage = () => {
 
   useEffect(() => {
     const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${currentCity?.lat}&lon=${currentCity?.lon}&exclude=current,minutely,hourly&appid=${KEY}`;
+
     axios
       .get(apiUrl)
       .then(response => {
+        dispatch(setLoading());
         const tomorrowWeather = response.data.daily[1];
         console.log(tomorrowWeather);
         setTomorrowWeather([
@@ -45,7 +48,7 @@ const TomorrowPage = () => {
           { text: 'Pressure:', value: `${tomorrowWeather?.pressure} mBar` },
           {
             text: 'Chance of precipitation:',
-            value: `${tomorrowWeather?.pop * 100} %`,
+            value: `${Math.floor(tomorrowWeather?.pop * 100)} %`,
           },
         ]);
         setTemperture(KelvinToCelsium(tomorrowWeather?.temp?.day));
@@ -53,7 +56,9 @@ const TomorrowPage = () => {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-      });
+        Notiflix.Notify.failure(error.message);
+      })
+      .finally(dispatch(setLoading()));
     /* eslint-disable */
   }, [currentCity]);
   /* eslint-enable */
