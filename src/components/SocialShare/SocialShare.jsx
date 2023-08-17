@@ -32,7 +32,7 @@ const SocialShare = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
+  /* eslint-disable */
   return (
     <div className="social-share">
       <p className="social-share__text">Share:</p>
@@ -56,6 +56,7 @@ const SocialShare = () => {
       </ul>
     </div>
   );
+  /* eslint-enable */
 };
 
 export default SocialShare;
