@@ -1,8 +1,9 @@
+import { nanoid } from 'nanoid';
 import './dropdawn.scss';
 
 const DropDown = ({ suggestions, setInput, hideDropDown }) => {
-  const dropClick = (text, lat, lon) => {
-    setInput(text, lat, lon);
+  const dropClick = (text, lat, lon, name) => {
+    setInput(text, lat, lon, name);
     hideDropDown();
   };
 
@@ -14,11 +15,12 @@ const DropDown = ({ suggestions, setInput, hideDropDown }) => {
             dropClick(
               `${city?.name}, ${city?.state || ''} ${city?.country}`,
               city?.lat,
-              city?.lon
+              city?.lon,
+              city?.name
             )
           }
           className="dropdawn__item"
-          key={city?.lat + city?.lon}
+          key={nanoid()}
         >
           <p className="dropdawn__bold-text">
             <b>{city?.name},</b>

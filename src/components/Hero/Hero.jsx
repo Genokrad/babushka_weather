@@ -2,6 +2,7 @@ import './hero.scss';
 import { drizzle, grandmother, mark } from 'assets';
 import { SocialShare } from 'components/SocialShare';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { KelvinToCelsium } from 'utils/converters';
 
 const formatDate = date => {
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
@@ -10,6 +11,7 @@ const formatDate = date => {
 
 const Hero = () => {
   const todayWeather = useSelector(state => state.weather.todayWeather);
+  const todatCiti = useSelector(state => state.weather.currentCity);
   console.log(todayWeather);
 
   return (
@@ -19,16 +21,25 @@ const Hero = () => {
         <div className="hero__content-wrapper">
           <div className="hero__location-wrapper">
             <img className="hero__location-image" src={mark} alt="mark" />
-            <p className="hero__city">{todayWeather.name}</p>
+            <p className="hero__city">{todatCiti.name}</p>
           </div>
           <div>
             <p className="hero__date-text">Today, {formatDate(new Date())}</p>
           </div>
         </div>
         <div className="hero__temperture-wrapper">
-          <img className="hero__temperture-image" src={drizzle} alt="weather" />
+          <img
+            className="hero__temperture-image"
+            src={
+              todayWeather
+                ? `https://openweathermap.org/img/w/${todayWeather?.weather[0]?.icon}.png`
+                : drizzle
+            }
+            alt="weather"
+          />
           <p className="hero__temperture">
-            {Math.floor(todayWeather?.main?.temp - 273.15)}°<span>C</span>
+            {todayWeather ? KelvinToCelsium(todayWeather?.main?.temp) : 0}°
+            <span>C</span>
           </p>
           <img className="hero__image" src={grandmother} alt="grandmother" />
         </div>

@@ -13,12 +13,12 @@ import { WeatherMessage } from 'components/WeatherMessage';
 //   { text: 'Visibility:', value: '10 km' },
 // ];
 
-const Dashboard = ({ icone, temperture, objIndication }) => {
+const Dashboard = ({ temperture, objIndication, pageType }) => {
   return (
     <>
       <WeatherMessage />
       <div className="indicators">
-        <OneDayWeather temperture={temperture} icone={icone} />
+        <OneDayWeather temperture={temperture} pageType={pageType} />
         <WeatherIndicator objIndication={objIndication} />
       </div>
     </>

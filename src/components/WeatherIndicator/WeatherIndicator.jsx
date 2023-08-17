@@ -1,16 +1,26 @@
+import { nanoid } from 'nanoid';
 import './weatherIndicator.scss';
+import { Item } from './Item';
+
+const schema = [
+  { text: 'Chance of precipitation:', value: '' },
+  { text: 'Humidity:', value: '' },
+  { text: 'Wind:', value: '' },
+  { text: 'Pressure:', value: '' },
+  { text: 'UV index:', value: '' },
+  { text: 'Visibility:', value: '' },
+];
 
 const WeatherIndicator = ({ objIndication }) => {
   return (
     <ul className="indicator">
-      {objIndication.map(indicator => (
-        <li className="indicator__item" key={indicator.text}>
-          <p className="indicator__text">
-            {indicator.text}
-            <span className="indicator__span">{indicator.value}</span>
-          </p>
-        </li>
-      ))}
+      {objIndication
+        ? objIndication?.map(indicator => (
+            <Item key={nanoid()} indicator={indicator} />
+          ))
+        : schema.map(indicator => (
+            <Item key={nanoid()} indicator={indicator} />
+          ))}
     </ul>
   );
 };

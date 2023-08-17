@@ -5,10 +5,12 @@ import { Button } from 'components/Button';
 import './welcomeScreen.scss';
 
 import { Input } from 'components/Input';
+import { useSelector } from 'react-redux';
 
-const KEY = '2ad6b3b56adc137acaefd4b3855025cf';
+// const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; // blocked
+const KEY = 'd66525f3861c64edb0280784b35cad3b';
 
-const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter }) => {
+const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState(null);
   const [showDrop, setShowDrop] = useState(false);
@@ -16,6 +18,8 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter }) => {
     lon: null,
     lat: null,
   });
+
+  const city = useSelector(state => state.weather.currentCity);
 
   useEffect(() => {
     if (inputValue) {
@@ -25,7 +29,7 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter }) => {
         .get(apiUrl)
         .then(response => {
           const cities = response.data;
-
+          console.log(cities);
           setSuggestions(cities);
         })
         .catch(error => {
@@ -47,29 +51,53 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter }) => {
     setShowDrop(false);
   };
 
-  const setInput = (value, lat, lon) => {
+  const setInput = (value, lat, lon, name) => {
     setInputValue(value);
+    citySetter({ ...coordinates, lat: lat, lon: lon, name: name });
     setCoordinates({
       ...coordinates,
       lat: lat,
       lon: lon,
+      name: name,
     });
   };
 
-  const fetchWeather = event => {
-    event.preventDefault();
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${KEY}`;
+  const fetch = (lat, lon) => {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${KEY}`;
 
     axios
       .get(apiUrl)
       .then(response => {
         const weather = response.data;
-
+        console.log(weather);
         weatherSetter(weather);
       })
       .catch(error => {
         console.error('Error fetching data:', error.response);
       });
+  };
+
+  const fetchWeather = event => {
+    event.preventDefault();
+
+    console.log(suggestions);
+    if (!suggestions) {
+      return;
+    }
+
+    if (city.lat === 0 && city.lon === 0) {
+      citySetter({
+        lat: suggestions[0].lat,
+        lon: suggestions[0].lon,
+        name: suggestions[0].name,
+      });
+
+      fetch(suggestions[0].lat, suggestions[0].lon);
+      togleWelocmeScreen();
+      return;
+    }
+
+    fetch(city.lat, city.lon);
     togleWelocmeScreen();
   };
 

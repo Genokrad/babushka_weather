@@ -1,41 +1,49 @@
-import { drizzle } from 'assets';
+// import { drizzle } from 'assets';
 
 import { Dashboard } from 'components/Dashboard';
 import { useSelector } from 'react-redux';
+import { KelvinToCelsium, metersToKilometers } from 'utils/converters';
 
 const TodayPage = () => {
   const todayWeather = useSelector(state => state.weather.todayWeather);
 
-  const metersToKilometers = meters => {
-    const kilometers = meters / 1000;
-    return kilometers;
-  };
-
-  const kelvinsToCelsius = temperture => {
-    return Math.floor(temperture - 273.15);
-  };
-
-  const todayTemperture = kelvinsToCelsius(todayWeather?.main?.temp);
-  const feelsLike = kelvinsToCelsius(todayWeather?.main?.feels_like);
+  const todayTemperture = KelvinToCelsium(todayWeather?.main?.temp);
+  const feelsLike = KelvinToCelsium(todayWeather?.main?.feels_like);
 
   const objIndication = [
-    { text: 'Feels like:', value: `${feelsLike}°C` },
-    { text: 'Humidity:', value: `${todayWeather?.main?.humidity}%` },
-    { text: 'Wind speed:', value: `${todayWeather?.wind?.speed}km/h` },
-    { text: 'Wind degree:', value: `${todayWeather?.wind?.deg}°` },
-    { text: 'Pressure:', value: `${todayWeather?.main?.pressure} mBar` },
+    { text: 'Feels like:', value: `${feelsLike ? feelsLike : '0'}°C` },
+    {
+      text: 'Humidity:',
+      value: `${todayWeather ? todayWeather?.main?.humidity : '0'}%`,
+    },
+    {
+      text: 'Wind speed:',
+      value: `${todayWeather ? todayWeather?.wind?.speed : '0'}km/h`,
+    },
+    {
+      text: 'Wind degree:',
+      value: `${todayWeather ? todayWeather?.wind?.deg : '0'}°`,
+    },
+    {
+      text: 'Pressure:',
+      value: `${todayWeather ? todayWeather?.main?.pressure : '0'} mBar`,
+    },
     {
       text: 'Visibility:',
-      value: `${metersToKilometers(todayWeather?.visibility)} km`,
+      value: `${
+        todayWeather ? metersToKilometers(todayWeather?.visibility) : '0'
+      } km`,
     },
   ];
+
+  // http://openweathermap.org/img/w/${}.png
 
   return (
     <>
       <Dashboard
-        icone={drizzle}
         temperture={todayTemperture}
         objIndication={objIndication}
+        pageType={'today'}
       />
     </>
   );

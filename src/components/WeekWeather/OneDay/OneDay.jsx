@@ -1,12 +1,26 @@
+// import { nanoid } from 'nanoid';
 import './oneDay.scss';
+import {
+  // convertToDate,
+  dateToDayOfWeek,
+  // DateNow,
+  KelvinToCelsium,
+} from 'utils/converters';
 
 const OneDay = ({ day }) => {
+  // const currentDate = new Date();
+  // const currentTimestamp = Math.floor(currentDate.getTime() / 1000);
+
   return (
     <li className="day-card">
-      <p className="day-card__day">{day.day}</p>
+      <p className="day-card__day">{dateToDayOfWeek(day.dt)}</p>
       <div className="day-card__box">
-        <img className="day-card__image" src={day.icon} alt="mark" />
-        <p className="day-card__temp">{day.temp}°</p>
+        <img
+          className="day-card__image"
+          src={`https://openweathermap.org/img/w/${day?.weather[0]?.icon}.png`}
+          alt="mark"
+        />
+        <p className="day-card__temp">{KelvinToCelsium(day.temp.day)}°</p>
       </div>
     </li>
   );
