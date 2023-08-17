@@ -8,7 +8,7 @@ const MainPage = () => {
   return (
     <div className="main-page-wrapper">
       <Hero />
-      <div style={{ padding: '32px' }}>
+      <div className="main-page-nav-wrapper">
         <SearchBar />
         <Navigation />
         <Outlet />

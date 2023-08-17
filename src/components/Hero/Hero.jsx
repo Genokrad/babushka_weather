@@ -17,7 +17,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="hero__wrapper">
-        <h2 className="hero__title">Babushka’s Weather Wisdom</h2>
+        <h2 className="hero__title">Babushka’s Weather&nbsp;Wisdom</h2>
         <div className="hero__content-wrapper">
           <div className="hero__location-wrapper">
             <img className="hero__location-image" src={mark} alt="mark" />
@@ -32,7 +32,7 @@ const Hero = () => {
             className="hero__temperture-image"
             src={
               todayWeather
-                ? `https://openweathermap.org/img/w/${todayWeather?.weather[0]?.icon}.png`
+                ? ` https://openweathermap.org/img/wn/${todayWeather?.weather[0]?.icon}@2x.png `
                 : drizzle
             }
             alt="weather"

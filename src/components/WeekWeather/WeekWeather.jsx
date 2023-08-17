@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DateNow, convertToDate } from 'utils/converters';
+import { GrandmaMessage } from 'components/GrandmaMessage';
 
 // const week = [
 //   { day: 'Tue', icon: drizzle, temp: 27 },
@@ -26,6 +27,7 @@ const WeekWeather = () => {
   const currentCity = useSelector(state => state.weather.currentCity);
 
   const [weekWeather, setWeekWeather] = useState(null);
+  const [showMessage, setShowMessage] = useState(true);
 
   useEffect(() => {
     const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${currentCity?.lat}&lon=${currentCity?.lon}&exclude=current,minutely,hourly&appid=${KEY}`;
@@ -43,9 +45,23 @@ const WeekWeather = () => {
       });
   }, [currentCity]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setShowMessage(window.innerWidth >= 1400);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <WeatherMessage />
+      {showMessage && <WeatherMessage />}
 
       <ul className="week-list">
         {weekWeather &&
@@ -55,6 +71,8 @@ const WeekWeather = () => {
             )
           )}
       </ul>
+
+      {!showMessage && <GrandmaMessage />}
     </>
   );
 };

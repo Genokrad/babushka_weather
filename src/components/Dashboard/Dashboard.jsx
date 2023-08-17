@@ -1,8 +1,12 @@
+import { grandmother } from 'assets';
 import './dashboard.scss';
 
 import { OneDayWeather } from 'components/OneDayWeather';
 import { WeatherIndicator } from 'components/WeatherIndicator';
 import { WeatherMessage } from 'components/WeatherMessage';
+import { useEffect, useState } from 'react';
+import { SocialShare } from 'components/SocialShare';
+import { GrandmaMessage } from 'components/GrandmaMessage';
 
 // const objIndication = [
 //   { text: 'Chance of precipitation:', value: '42%' },
@@ -14,12 +18,29 @@ import { WeatherMessage } from 'components/WeatherMessage';
 // ];
 
 const Dashboard = ({ temperture, objIndication, pageType }) => {
+  const [showHero, setShowHero] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowHero(window.innerWidth >= 1400);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <WeatherMessage />
+      {showHero && <WeatherMessage />}
       <div className="indicators">
         <OneDayWeather temperture={temperture} pageType={pageType} />
         <WeatherIndicator objIndication={objIndication} />
+        {!showHero && <GrandmaMessage />}
       </div>
     </>
   );

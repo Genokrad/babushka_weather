@@ -106,6 +106,7 @@ const SearchBar = () => {
         />
         <Button
           className="search-bar__button"
+          hideText="search-bar__hide-text"
           text="Show&nbsp;weather"
           icon={FiArrowRight}
           type={'submit'}

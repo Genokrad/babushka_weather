@@ -6,6 +6,7 @@ import './welcomeScreen.scss';
 
 import { Input } from 'components/Input';
 import { useSelector } from 'react-redux';
+import { grandmother } from 'assets';
 
 // const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; // blocked
 const KEY = 'd66525f3861c64edb0280784b35cad3b';
@@ -104,7 +105,9 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
   return (
     <div className="welcome-screen">
       <div className="welcome-screen__text-box">
-        <h1 className="welcome-screen__title">Babushka’s Weather Wisdom</h1>
+        <h1 className="welcome-screen__title">
+          Babushka’s Weather&nbsp;Wisdom
+        </h1>
         <p className="welcome-screen__paragraph">
           Your grandma’s ultimate weather guide
         </p>
@@ -131,6 +134,13 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
             type={'submit'}
           />
         </form>
+        <div className="welcome-screen__image-wrapper">
+          <img
+            className="welcome-screen__image"
+            src={grandmother}
+            alt="grandmother"
+          />
+        </div>
       </div>
     </div>
   );

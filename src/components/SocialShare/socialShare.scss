@@ -1,15 +1,27 @@
 .social-share {
+  width: 100%;
   display: flex;
   gap: 40px;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 1400px) {
+    justify-content: space-between;
+  }
   &__text {
     font-family: 'Manrope-Regular';
     font-size: 18px;
-    color: var(--text-white-color);
+    color: var(--text-black-collor);
+    @media screen and (min-width: 1400px) {
+      color: var(--text-white-color);
+    }
   }
   &__list {
-    width: 100%;
+    width: 200px;
     display: flex;
     justify-content: space-between;
+  }
+  &__link {
+    width: 100%;
+    display: flex;
   }
 }

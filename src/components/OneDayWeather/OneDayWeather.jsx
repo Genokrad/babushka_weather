@@ -22,7 +22,7 @@ const OneDayWeather = ({ temperture, pageType }) => {
         className="todayWeather__image"
         src={
           description
-            ? `https://openweathermap.org/img/w/${description?.icon}.png`
+            ? `https://openweathermap.org/img/wn/${description?.icon}@2x.png `
             : drizzle
         }
         alt="mark"

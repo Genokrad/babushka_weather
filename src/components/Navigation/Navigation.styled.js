@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const StyledLink = styled(NavLink)`
   width: 320px;
-  height: 56px;
+  /* height: 56px; */
   border-radius: 40px;
   padding: 10px;
   display: flex;
@@ -11,10 +11,15 @@ export const StyledLink = styled(NavLink)`
   align-items: center;
 
   font-family: 'Manrope-Regular';
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1;
   color: var(--text-green-color);
   transition: 0.2s;
+  @media screen and (min-width: 600px) {
+    font-size: 24px;
+    width: 320px;
+    height: 56px;
+  }
 
   /* background-color: var(--button-bcg-yellow); */
   &:hover {
@@ -31,10 +36,14 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const SyledNav = styled('nav')`
-  margin-top: 32px;
+  margin-top: 24px;
   border-radius: 40px;
   background-color: var(--button-bcg-yellow);
 
   display: flex;
   justify-content: space-between;
+
+  @media screen and (min-width: 600px) {
+    margin-top: 32px;
+  }
 `;

@@ -3,7 +3,9 @@
   width: 100%;
   // max-width: 526px;
   max-height: 57px;
+
   &__field {
+    padding: 16px;
     border: none;
     padding-left: 50px;
     background-color: var(--background-color-light-gray);

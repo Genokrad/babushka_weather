@@ -1,4 +1,29 @@
 .main-page-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  @media screen and (min-width: 1000px) {
+    flex-direction: row;
+  }
+  @media screen and (min-width: 1400px) {
+    padding: 16px 32px 16px 16px;
+  }
+}
+
+.main-page-wrapper .hero {
+  display: block;
+}
+
+@media (max-width: 1400px) {
+  .main-page-wrapper .hero {
+    display: none;
+  }
+}
+
+.main-page-nav-wrapper {
+  @media screen and (min-width: 1400px) {
+    padding-left: 32px;
+  }
 }
