@@ -1,11 +1,10 @@
-import { grandmother } from 'assets';
 import './dashboard.scss';
 
 import { OneDayWeather } from 'components/OneDayWeather';
 import { WeatherIndicator } from 'components/WeatherIndicator';
 import { WeatherMessage } from 'components/WeatherMessage';
 import { useEffect, useState } from 'react';
-import { SocialShare } from 'components/SocialShare';
+
 import { GrandmaMessage } from 'components/GrandmaMessage';
 
 // const objIndication = [
