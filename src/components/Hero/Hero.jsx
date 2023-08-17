@@ -1,6 +1,6 @@
 import { Location } from 'components/Location';
 import './hero.scss';
-import { drizzle, grandmother, mark } from 'assets';
+import { drizzle, grandmother } from 'assets';
 import { SocialShare } from 'components/SocialShare';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { KelvinToCelsium } from 'utils/converters';

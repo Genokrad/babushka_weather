@@ -9,7 +9,6 @@ import { GrandmaMessage } from 'components/GrandmaMessage';
 import { useSelector } from 'react-redux';
 import { Loader } from 'components/Loader';
 import { Location } from 'components/Location';
-import { mark } from 'assets';
 
 // const objIndication = [
 //   { text: 'Chance of precipitation:', value: '42%' },
