@@ -80,6 +80,10 @@ const SearchBar = () => {
     setShowDrop(false);
   };
 
+  const dropdownMeasureTogler = () => {
+    Notiflix.Notify.warning('Not yet ready functionality');
+  };
+
   const fetchWeather = event => {
     event.preventDefault();
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${KEY}`;
@@ -113,32 +117,35 @@ const SearchBar = () => {
 
   return (
     <div className="search-bar">
-      <form onSubmit={fetchWeather} className="search-bar__form" action="">
-        <Input
-          handleInputChange={handleInputChange}
-          className={'search-bar__input'}
-          inputValue={inputValue}
-          suggestions={suggestions}
-          setInput={setInput}
-          showDropdown={showDropdown}
-          hideDropDown={hideDropDown}
-          showDrop={showDrop}
-        />
+      <div className="search-bar__separator">
+        <form onSubmit={fetchWeather} className="search-bar__form" action="">
+          <Input
+            handleInputChange={handleInputChange}
+            className={'search-bar__input'}
+            inputValue={inputValue}
+            suggestions={suggestions}
+            setInput={setInput}
+            showDropdown={showDropdown}
+            hideDropDown={hideDropDown}
+            showDrop={showDrop}
+          />
+          <Button
+            className="search-bar__button"
+            hideText="search-bar__hide-text"
+            text="Show&nbsp;weather"
+            icon={FiArrowRight}
+            type={'submit'}
+            iconClass={'search-bar__icon'}
+          />
+        </form>
         <Button
-          className="search-bar__button"
-          hideText="search-bar__hide-text"
-          text="Show&nbsp;weather"
-          icon={FiArrowRight}
-          type={'submit'}
-          iconClass={'search-bar__icon'}
-        />
-        <Button
+          fun={dropdownMeasureTogler}
           className="search-bar__button-settings"
           icon={FiSettings}
           type={''}
           iconClass={'search-bar__icon-settings'}
         />
-      </form>
+      </div>
 
       <div className="search-bar__divider"></div>
     </div>

@@ -2,6 +2,7 @@
 import './oneDay.scss';
 import {
   codeToIcon,
+  convertToDate,
   // convertToDate,
   dateToDayOfWeek,
   // DateNow,
@@ -14,7 +15,10 @@ const OneDay = ({ day }) => {
 
   return (
     <li className="day-card">
-      <p className="day-card__day">{dateToDayOfWeek(day.dt)}</p>
+      <div>
+        <p className="day-card__day">{dateToDayOfWeek(day.dt)}</p>
+        <p className="day-card__date">{convertToDate(day.dt)}</p>
+      </div>
       <div className="day-card__box">
         <img
           className="day-card__image"
