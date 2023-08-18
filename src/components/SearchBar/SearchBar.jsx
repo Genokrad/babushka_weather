@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import {
   setCurrentCity,
   setLoading,
+  setScreenTogler,
   setTodayWeather,
 } from 'features/weather/weatherSlice';
 import Notiflix from 'notiflix';
@@ -27,6 +28,7 @@ const SearchBar = () => {
   });
 
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const citySetter = obj => {
     dispatch(setCurrentCity(obj));
@@ -80,7 +82,8 @@ const SearchBar = () => {
     setShowDrop(false);
   };
 
-  const dropdownMeasureTogler = () => {
+  const dropdownMeasureTogler = event => {
+    event.preventDefault();
     Notiflix.Notify.warning('Not yet ready functionality');
   };
 
@@ -115,8 +118,15 @@ const SearchBar = () => {
     setInputValue('');
   };
 
+  const screenToglerFunction = () => {
+    dispatch(setScreenTogler());
+  };
+
   return (
     <div className="search-bar">
+      <h2 onClick={screenToglerFunction} className="search-bar__title">
+        Babushka’s Weather&nbsp;Wisdom
+      </h2>
       <div className="search-bar__separator">
         <form onSubmit={fetchWeather} className="search-bar__form" action="">
           <Input

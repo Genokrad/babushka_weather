@@ -1,17 +1,19 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setTodayWeather,
   setCurrentCity,
+  setScreenTogler,
 } from '../../features/weather/weatherSlice';
 
 import { WelcomeScreen } from 'components/WelcomeScreen';
 
 const Layout = () => {
   const dispatch = useDispatch();
+  const isCity = useSelector(state => state.weather.screenTogler);
 
-  const [isCity, setIsCity] = useState(false);
+  // const [isCity, setIsCity] = useState(false);
 
   const weatherSetter = obj => {
     dispatch(setTodayWeather(obj));
@@ -24,7 +26,7 @@ const Layout = () => {
   const navigate = useNavigate();
 
   const togleWelocmeScreen = () => {
-    setIsCity(true);
+    dispatch(setScreenTogler());
     navigate('main/today');
   };
   return (

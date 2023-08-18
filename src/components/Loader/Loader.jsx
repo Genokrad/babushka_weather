@@ -6,20 +6,31 @@ const Loader = () => {
     <div
       style={{
         position: 'absolute',
-        // left: '50%',
-        // top: '50%',
-        // transform: 'translate(-50%, -50%)',
-        zIndex: '3',
-        // boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
-        // borderRadius: '50%',
+        width: '100%',
+        height: '200px',
+        display: 'flex',
+        justifyContent: 'center',
+        maxWidth: '960px',
       }}
     >
-      <Rive
-        style={{ width: '180px', height: '180px' }}
-        src={loaders}
-        animations="Animation 1"
-        autoPlay={true}
-      />
+      <div
+        style={{
+          width: '250px',
+          height: '250px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'centerdisplay',
+          backgroundColor: '#8d8e88bb',
+          borderRadius: '50%',
+        }}
+      >
+        <Rive
+          style={{ width: '180px', height: '180px' }}
+          src={loaders}
+          animations="Animation 1"
+          autoPlay={true}
+        />
+      </div>
     </div>
   );
 };

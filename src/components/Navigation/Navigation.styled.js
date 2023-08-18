@@ -23,9 +23,9 @@ export const StyledLink = styled(NavLink)`
 
   /* background-color: var(--button-bcg-yellow); */
   &:hover {
-    background-color: var(--button-bcg-green);
-    font-family: 'Manrope-Bold';
-    color: var(--text-white-color);
+    /* background-color: var(--button-bcg-green); */
+    /* font-family: 'Manrope-Bold'; */
+    color: var(--text-black-collor);
     transition: 0.2s;
   }
   &.active {

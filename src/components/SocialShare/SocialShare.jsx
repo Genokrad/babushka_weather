@@ -7,6 +7,7 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
+import Notiflix from 'notiflix';
 
 const socials = [
   CgFacebook,
@@ -32,6 +33,10 @@ const SocialShare = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  const alertMessage = () => {
+    Notiflix.Notify.warning('Not yet ready functionality');
+  };
+
   /* eslint-disable */
   return (
     <div className="social-share">
@@ -39,7 +44,7 @@ const SocialShare = () => {
       <ul className="social-share__list">
         {socials.map(Social => (
           <li key={nanoid()}>
-            <a className="social-share__link" href="">
+            <a onClick={alertMessage} className="social-share__link" href="*">
               <Social
                 style={{
                   width: '20px',

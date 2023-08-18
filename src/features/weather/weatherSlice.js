@@ -8,6 +8,7 @@ const initialState = {
   },
   tomorrow: null,
   loading: false,
+  screenTogler: false,
 };
 
 export const weatherSlice = createSlice({
@@ -26,10 +27,18 @@ export const weatherSlice = createSlice({
     setLoading: state => {
       state.loading = !state.loading;
     },
+    setScreenTogler: state => {
+      state.screenTogler = !state.screenTogler;
+    },
   },
 });
 
-export const { setTodayWeather, setCurrentCity, setTomorrow, setLoading } =
-  weatherSlice.actions;
+export const {
+  setTodayWeather,
+  setCurrentCity,
+  setTomorrow,
+  setLoading,
+  setScreenTogler,
+} = weatherSlice.actions;
 
 export default weatherSlice.reducer;

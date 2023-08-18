@@ -4,6 +4,8 @@ import grandmother from './grandmother.svg';
 // UTILS
 import search from './search.svg';
 import mark from './mark.svg';
+import triangle from './triangle.png';
+import triangleVertical from './triangleVertical.png';
 
 //WEATHER
 import clearCloudy from './clear-cloudy.svg';
@@ -63,4 +65,6 @@ export {
   telegram,
   whatsapp,
   loader,
+  triangle,
+  triangleVertical,
 };

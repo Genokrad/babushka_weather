@@ -3,7 +3,10 @@
   padding-bottom: 32px;
   display: flex;
   gap: 32px;
-  max-width: 992px;
+  // max-width: 992px;
+  width: 100%;
+  max-width: 960px;
+
   overflow-x: auto;
   margin-bottom: 16px;
 }
