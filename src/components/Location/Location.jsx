@@ -1,8 +1,8 @@
 import './location.scss';
 import { HiLocationMarker } from 'react-icons/hi';
-import { formatDate } from 'utils/converters';
+import { convertToFullFormatData, formatDate } from 'utils/converters';
 
-const Location = ({ fontColor, todayCiti }) => {
+const Location = ({ fontColor, todayCiti, todayDate, week }) => {
   return (
     <div className="location">
       <div className="location__wrapper">
@@ -15,9 +15,19 @@ const Location = ({ fontColor, todayCiti }) => {
         </p>
       </div>
       <div>
-        <p style={{ color: fontColor }} className="location__date-text">
-          Today, {formatDate(new Date())}
-        </p>
+        {!week && (
+          <p style={{ color: fontColor }} className="location__date-text">
+            Today,{' '}
+            {todayDate
+              ? convertToFullFormatData(todayDate)
+              : formatDate(new Date())}
+          </p>
+        )}
+        {week && (
+          <p style={{ color: fontColor }} className="location__date-text">
+            {week}
+          </p>
+        )}
       </div>
     </div>
   );

@@ -66,9 +66,13 @@ const TomorrowPage = () => {
   /* eslint-enable */
 
   // const wishMessagetext = wishMessage(tomorrowWeather?.weather[0]?.icon);
+
+  const todayDate = useSelector(state => state?.weather?.tomorrow?.dt);
+
   return (
     <>
       <Dashboard
+        todayDate={todayDate}
         temperture={temperture}
         objIndication={tomorrowWeather}
         pageType={'tomorrow'}

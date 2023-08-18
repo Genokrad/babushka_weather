@@ -5,8 +5,12 @@ import { SocialShare } from 'components/SocialShare';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { KelvinToCelsium, codeToIcon } from 'utils/converters';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setScreenTogler } from 'features/weather/weatherSlice';
 
 const Hero = () => {
+  const dispatch = useDispatch();
+
   const [newCity, setNewCity] = useState('');
 
   const todayWeather = useSelector(state => state.weather.todayWeather);
@@ -18,10 +22,16 @@ const Hero = () => {
     // eslint-disable-next-line
   }, [loading]);
 
+  const screenToglerFunction = () => {
+    dispatch(setScreenTogler());
+  };
+
   return (
     <div className="hero">
       <div className="hero__wrapper">
-        <h2 className="hero__title">Babushka’s Weather&nbsp;Wisdom</h2>
+        <h2 onClick={screenToglerFunction} className="hero__title">
+          Babushka’s Weather&nbsp;Wisdom
+        </h2>
         <Location todayCiti={newCity} fontColor={'#fff'} />
         <div className="hero__temperture-wrapper">
           <img

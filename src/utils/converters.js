@@ -10,6 +10,67 @@ import {
   thunderstroms,
 } from 'assets';
 
+const convetToFullYear = time => {
+  const timestamp = time;
+  const date = new Date(timestamp * 1000);
+
+  const year = date.getFullYear();
+  return year;
+};
+
+const converToMonth = time => {
+  const timestamp = time;
+  const date = new Date(timestamp * 1000);
+
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const month = months[date.getMonth()];
+
+  return month;
+};
+
+const convertToFullFormatData = time => {
+  const timestamp = time;
+  const date = new Date(timestamp * 1000);
+
+  // const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  // const dayOfWeek = daysOfWeek[date.getDay()];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  const formattedDate = `${month} ${day}, ${year}`;
+  return formattedDate;
+};
+
 const convertToDate = timestamp => {
   const date = new Date(timestamp * 1000);
   const dayOfMonth = date.getDate();
@@ -102,6 +163,7 @@ const wishMessage = mark => {
 };
 
 export {
+  convetToFullYear,
   convertToDate,
   dateToDayOfWeek,
   DateNow,
@@ -110,4 +172,6 @@ export {
   formatDate,
   codeToIcon,
   wishMessage,
+  convertToFullFormatData,
+  converToMonth,
 };
