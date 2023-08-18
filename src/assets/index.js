@@ -4,8 +4,8 @@ import grandmother from './grandmother.svg';
 // UTILS
 import search from './search.svg';
 import mark from './mark.svg';
-import triangle from './triangle.png';
-import triangleVertical from './triangleVertical.png';
+import triangle from './triangle.svg';
+import triangleVertical from './triangleVertical.svg';
 
 //WEATHER
 import clearCloudy from './clear-cloudy.svg';

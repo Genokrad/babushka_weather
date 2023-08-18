@@ -23,7 +23,7 @@ const TodayPage = () => {
     },
     {
       text: 'Wind speed:',
-      value: `${todayWeather ? todayWeather?.wind?.speed : '0'}km/h`,
+      value: `${todayWeather ? todayWeather?.wind?.speed : '0'} km/h`,
     },
     {
       text: 'Wind degree:',

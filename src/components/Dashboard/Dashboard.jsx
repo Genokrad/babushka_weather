@@ -47,9 +47,7 @@ const Dashboard = ({
 
   return (
     <>
-      {!showHero && (
-        <Location todayCiti={todayCiti} fontColor={'#000'} pad={'24px'} />
-      )}
+      {!showHero && <Location todayCiti={todayCiti} fontColor={'#000'} />}
       {showHero && <WeatherMessage text={wishMessagetext} />}
       <div className="indicators">
         {loading && <Loader />}

@@ -2,9 +2,9 @@ import './location.scss';
 import { HiLocationMarker } from 'react-icons/hi';
 import { formatDate } from 'utils/converters';
 
-const Location = ({ fontColor, todayCiti, pad }) => {
+const Location = ({ fontColor, todayCiti }) => {
   return (
-    <div style={{ padding: `${pad} ${pad} 0 ${pad}` }} className="location">
+    <div className="location">
       <div className="location__wrapper">
         <HiLocationMarker
           style={{ color: fontColor, width: '22px', height: '26px' }}

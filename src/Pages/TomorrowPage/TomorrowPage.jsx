@@ -45,7 +45,7 @@ const TomorrowPage = () => {
             value: `${KelvinToCelsium(tomorrowWeather?.feels_like?.day)}°C`,
           },
           { text: 'Humidity:', value: `${tomorrowWeather?.humidity}%` },
-          { text: 'Wind speed:', value: `${tomorrowWeather?.wind_speed}km/h` },
+          { text: 'Wind speed:', value: `${tomorrowWeather?.wind_speed} km/h` },
           { text: 'Wind degree:', value: `${tomorrowWeather?.wind_deg}°` },
           { text: 'Pressure:', value: `${tomorrowWeather?.pressure} mBar` },
           {
