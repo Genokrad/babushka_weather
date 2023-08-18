@@ -5,7 +5,7 @@ const { WeatherMessage } = require('components/WeatherMessage');
 const GrandmaMessage = ({ text }) => {
   return (
     <>
-      <WeatherMessage />
+      <WeatherMessage text={text} />
 
       <div
         style={{

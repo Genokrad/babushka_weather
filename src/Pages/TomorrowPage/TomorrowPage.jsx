@@ -5,7 +5,7 @@ import { setLoading, setTomorrow } from 'features/weather/weatherSlice';
 import Notiflix from 'notiflix';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { KelvinToCelsium } from 'utils/converters';
+import { KelvinToCelsium, wishMessage } from 'utils/converters';
 
 const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; //Blocked
 // const KEY = '2ad6b3b56adc137acaefd4b3855025cf--temporry';
@@ -22,6 +22,7 @@ const TomorrowPage = () => {
       value: ` %`,
     },
   ]);
+  const [message, setMessage] = useState('');
   const [temperture, setTemperture] = useState(0);
 
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const TomorrowPage = () => {
         dispatch(setLoading());
         const tomorrowWeather = response.data.daily[1];
 
+        setMessage(wishMessage(tomorrowWeather?.weather[0]?.icon));
         setTomorrowWeather([
           {
             text: 'Feels like:',
@@ -62,12 +64,15 @@ const TomorrowPage = () => {
     /* eslint-disable */
   }, [currentCity]);
   /* eslint-enable */
+
+  // const wishMessagetext = wishMessage(tomorrowWeather?.weather[0]?.icon);
   return (
     <>
       <Dashboard
         temperture={temperture}
         objIndication={tomorrowWeather}
         pageType={'tomorrow'}
+        wishMessagetext={message}
       />
     </>
   );

@@ -3,10 +3,7 @@ import './weatherMessage.scss';
 const WeatherMessage = ({ text }) => {
   return (
     <div className="message">
-      <p className="message__text">
-        Don't forget your umbrella, or you'll catch a cold and blame it on the
-        draught in your socks!
-      </p>
+      <p className="message__text">{text}</p>
     </div>
   );
 };

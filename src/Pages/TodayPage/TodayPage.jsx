@@ -3,7 +3,11 @@
 import { Dashboard } from 'components/Dashboard';
 
 import { useSelector } from 'react-redux';
-import { KelvinToCelsium, metersToKilometers } from 'utils/converters';
+import {
+  KelvinToCelsium,
+  metersToKilometers,
+  wishMessage,
+} from 'utils/converters';
 
 const TodayPage = () => {
   const todayWeather = useSelector(state => state.weather.todayWeather);
@@ -38,6 +42,7 @@ const TodayPage = () => {
   ];
 
   // http://openweathermap.org/img/w/${}.png
+  const wishMessagetext = wishMessage(todayWeather?.weather[0]?.icon);
 
   return (
     <>
@@ -45,6 +50,7 @@ const TodayPage = () => {
         temperture={todayTemperture}
         objIndication={objIndication}
         pageType={'today'}
+        wishMessagetext={wishMessagetext}
       />
     </>
   );

@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { DateNow, convertToDate } from 'utils/converters';
+import { DateNow, convertToDate, wishMessage } from 'utils/converters';
 import { GrandmaMessage } from 'components/GrandmaMessage';
 import { setLoading } from 'features/weather/weatherSlice';
 import { Loader } from 'components/Loader';
@@ -69,9 +69,11 @@ const WeekWeather = () => {
 
   const loading = useSelector(state => state.weather.loading);
 
+  const wishMessagetext = wishMessage('week');
+
   return (
     <>
-      {showMessage && <WeatherMessage />}
+      {showMessage && <WeatherMessage text={wishMessagetext} />}
       {loading && <Loader />}
 
       <ul className="week-list">
@@ -84,7 +86,7 @@ const WeekWeather = () => {
           )}
       </ul>
 
-      {!showMessage && <GrandmaMessage />}
+      {!showMessage && <GrandmaMessage text={wishMessagetext} />}
     </>
   );
 };

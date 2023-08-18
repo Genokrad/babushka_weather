@@ -19,7 +19,12 @@ import { Location } from 'components/Location';
 //   { text: 'Visibility:', value: '10 km' },
 // ];
 
-const Dashboard = ({ temperture, objIndication, pageType }) => {
+const Dashboard = ({
+  temperture,
+  objIndication,
+  pageType,
+  wishMessagetext,
+}) => {
   const [showHero, setShowHero] = useState(true);
 
   useEffect(() => {
@@ -45,13 +50,13 @@ const Dashboard = ({ temperture, objIndication, pageType }) => {
       {!showHero && (
         <Location todayCiti={todayCiti} fontColor={'#000'} pad={'24px'} />
       )}
-      {showHero && <WeatherMessage text={'text'} />}
+      {showHero && <WeatherMessage text={wishMessagetext} />}
       <div className="indicators">
         {loading && <Loader />}
 
         <OneDayWeather temperture={temperture} pageType={pageType} />
         <WeatherIndicator objIndication={objIndication} />
-        {!showHero && <GrandmaMessage text={'text'} />}
+        {!showHero && <GrandmaMessage text={wishMessagetext} />}
       </div>
     </>
   );

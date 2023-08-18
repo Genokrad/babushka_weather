@@ -135,7 +135,7 @@ const SearchBar = () => {
         <Button
           className="search-bar__button-settings"
           icon={FiSettings}
-          // type={'submit'}
+          type={''}
           iconClass={'search-bar__icon-settings'}
         />
       </form>
