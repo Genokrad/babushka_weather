@@ -6,6 +6,7 @@ const Loader = () => {
     <div
       style={{
         position: 'absolute',
+        zIndex: '3',
         width: '100%',
         height: '200px',
         display: 'flex',

@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-import { Button } from 'components/Button';
 import './welcomeScreen.scss';
 
-import { Input } from 'components/Input';
-import { useDispatch, useSelector } from 'react-redux';
-import { grandmother } from 'assets';
-import { setLoading } from 'features/weather/weatherSlice';
 import Notiflix from 'notiflix';
 
-// const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; // blocked
-const KEY = 'd66525f3861c64edb0280784b35cad3b';
+import React, { useState, useEffect, useCallback } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading, setWeekWeather } from 'features/weather/weatherSlice';
+
+import { Button } from 'components/Button';
+import { Input } from 'components/Input';
+import { Loader } from 'components/Loader';
+
+import { grandmother } from 'assets';
+
+import { fetchCityCoordinates, fetchCitiesWeather } from 'services';
 
 const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
   const [inputValue, setInputValue] = useState('');
@@ -20,36 +22,28 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
   const [coordinates, setCoordinates] = useState({
     lon: null,
     lat: null,
+    city: null,
   });
 
   const dispatch = useDispatch();
-
-  const city = useSelector(state => state.weather.currentCity);
-  // const loading = useSelector(state => state.weather.loading);
-
-  useEffect(() => {
-    if (inputValue) {
-      const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${KEY}`;
-
-      axios
-        .get(apiUrl)
-        .then(response => {
-          const cities = response.data;
-
-          setSuggestions(cities);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error.message);
-          Notiflix.Notify.failure(error.message);
-        });
-    } else {
-      setSuggestions(null);
-    }
-  }, [inputValue]);
+  const isLoading = useSelector(state => state.weather.loading);
 
   const handleInputChange = event => {
     setInputValue(event.target.value);
   };
+
+  const some = useCallback(async () => {
+    dispatch(setLoading());
+    const cities = await fetchCityCoordinates(inputValue);
+    dispatch(setLoading());
+    setSuggestions(cities);
+  }, [inputValue, dispatch]);
+
+  useEffect(() => {
+    if (inputValue.trim() !== '') {
+      some();
+    }
+  }, [inputValue, some]);
 
   const showDropdown = () => {
     setShowDrop(true);
@@ -60,34 +54,10 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
 
   const setInput = (value, lat, lon, name) => {
     setInputValue(value);
-    citySetter({ ...coordinates, lat: lat, lon: lon, name: name });
-    setCoordinates({
-      ...coordinates,
-      lat: lat,
-      lon: lon,
-      name: name,
-    });
+    setCoordinates({ lon: lon, lat: lat, city: name });
   };
 
-  const fetch = (lat, lon) => {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${KEY}`;
-
-    axios
-      .get(apiUrl)
-      .then(response => {
-        dispatch(setLoading());
-        const weather = response.data;
-
-        weatherSetter(weather);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error.response);
-        Notiflix.Notify.failure(error.message);
-      })
-      .finally(dispatch(setLoading()));
-  };
-
-  const fetchWeather = event => {
+  const fetchWeather = async event => {
     event.preventDefault();
 
     if (!suggestions) {
@@ -101,24 +71,34 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
       return;
     }
 
-    if (city?.lat === 0 && city?.lon === 0) {
-      citySetter({
-        lat: suggestions[0]?.lat,
-        lon: suggestions[0]?.lon,
-        name: suggestions[0]?.name,
-      });
-
-      fetch(suggestions[0]?.lat, suggestions[0]?.lon);
+    if (
+      coordinates.lat === null &&
+      coordinates.lon === null &&
+      suggestions.length > 0
+    ) {
+      dispatch(setLoading());
+      const weather = await fetchCitiesWeather(
+        suggestions[0].lat,
+        suggestions[0].lon
+      );
+      dispatch(setWeekWeather({ ...weather, city: suggestions[0].name }));
+      dispatch(setLoading());
       togleWelocmeScreen();
       return;
     }
+    dispatch(setLoading());
+    const weather = await fetchCitiesWeather(coordinates.lat, coordinates.lon);
+    dispatch(setWeekWeather({ ...weather, city: coordinates.city }));
+    dispatch(setLoading());
 
-    fetch(city?.lat, city?.lon);
     togleWelocmeScreen();
+    // return;
   };
 
   return (
     <div className="welcome-screen">
+      {console.log(suggestions)}
+      {isLoading && <Loader />}
       <div className="welcome-screen__text-box">
         <h1 className="welcome-screen__title">
           Babushka’s Weather&nbsp;Wisdom
@@ -149,6 +129,7 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
             type={'submit'}
           />
         </form>
+
         <div className="welcome-screen__image-wrapper">
           <img
             className="welcome-screen__image"
@@ -162,8 +143,3 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
 };
 
 export default WelcomeScreen;
-
-// .then(response => {
-//   const cities = response.data.list.map(city => city.name);
-//   setSuggestions(cities);
-// })

@@ -1,18 +1,16 @@
 // import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
 import './oneDay.scss';
 import {
   codeToIcon,
   converToMonth,
   convertToDate,
-  // convertToDate,
   dateToDayOfWeek,
-  // DateNow,
   KelvinToCelsium,
 } from 'utils/converters';
 
 const OneDay = ({ day }) => {
-  // const currentDate = new Date();
-  // const currentTimestamp = Math.floor(currentDate.getTime() / 1000);
+  const measure = useSelector(state => state.weather.tempertureMeasure);
 
   return (
     <li className="day-card">
@@ -28,7 +26,9 @@ const OneDay = ({ day }) => {
           src={codeToIcon(day?.weather[0]?.icon)}
           alt="mark"
         />
-        <p className="day-card__temp">{KelvinToCelsium(day.temp.day)}°</p>
+        <p className="day-card__temp">
+          {KelvinToCelsium(day.temp.day, measure)}°
+        </p>
       </div>
     </li>
   );

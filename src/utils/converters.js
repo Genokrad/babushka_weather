@@ -96,8 +96,16 @@ const DateNow = () => {
   return currentTimestamp;
 };
 
-const KelvinToCelsium = number => {
-  return Math.floor(number - 273.15);
+const KelvinToCelsium = (number, mark) => {
+  if (mark === 'celsius') {
+    return Math.round(number - 273.15);
+  }
+  if (mark === 'fahrenheit') {
+    return Math.round(((number - 273.15) * 9) / 5 + 32);
+  }
+  if (mark === 'kelvin') {
+    return Math.round(number);
+  }
 };
 
 const metersToKilometers = meters => {

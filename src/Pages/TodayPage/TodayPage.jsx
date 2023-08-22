@@ -3,54 +3,53 @@
 import { Dashboard } from 'components/Dashboard';
 
 import { useSelector } from 'react-redux';
-import {
-  KelvinToCelsium,
-  metersToKilometers,
-  wishMessage,
-} from 'utils/converters';
+import { KelvinToCelsium, wishMessage } from 'utils/converters';
 
 const TodayPage = () => {
-  const todayWeather = useSelector(state => state.weather.todayWeather);
+  const measure = useSelector(state => state.weather.tempertureMeasure);
 
-  const todayTemperture = KelvinToCelsium(todayWeather?.main?.temp);
-  const feelsLike = KelvinToCelsium(todayWeather?.main?.feels_like);
+  const weekWeather = useSelector(state => state.weather.weekWeather);
+  const todayWeather = weekWeather.daily[0];
+  const todayTemperture = KelvinToCelsium(todayWeather?.temp?.day, measure);
+  const feelsLike = KelvinToCelsium(todayWeather?.feels_like?.day, measure);
+  const description = todayWeather?.weather[0]?.description;
 
   const objIndication = [
     { text: 'Feels like:', value: `${feelsLike ? feelsLike : '0'}°C` },
     {
       text: 'Humidity:',
-      value: `${todayWeather ? todayWeather?.main?.humidity : '0'}%`,
+      value: `${todayWeather ? todayWeather?.humidity : '0'}%`,
     },
     {
       text: 'Wind speed:',
-      value: `${todayWeather ? todayWeather?.wind?.speed : '0'} km/h`,
+      value: `${todayWeather ? todayWeather?.wind_speed : '0'} km/h`,
     },
     {
       text: 'Wind degree:',
-      value: `${todayWeather ? todayWeather?.wind?.deg : '0'}°`,
+      value: `${todayWeather ? todayWeather?.wind_deg : '0'}°`,
     },
     {
       text: 'Pressure:',
-      value: `${todayWeather ? todayWeather?.main?.pressure : '0'} mBar`,
+      value: `${todayWeather ? todayWeather?.pressure : '0'} mBar`,
     },
     {
-      text: 'Visibility:',
-      value: `${
-        todayWeather ? metersToKilometers(todayWeather?.visibility) : '0'
-      } km`,
+      text: 'possibility of precipitation:',
+      value: `${todayWeather ? todayWeather?.pop * 100 : '0'} %`,
     },
   ];
 
-  // http://openweathermap.org/img/w/${}.png
   const wishMessagetext = wishMessage(todayWeather?.weather[0]?.icon);
 
   return (
     <>
       <Dashboard
+        icon={todayWeather?.weather[0]?.icon}
+        city={weekWeather.city}
         temperture={todayTemperture}
         objIndication={objIndication}
-        pageType={'today'}
+        pageType={'Today'}
         wishMessagetext={wishMessagetext}
+        description={description}
       />
     </>
   );

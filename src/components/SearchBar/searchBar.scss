@@ -1,5 +1,6 @@
 .search-bar {
   width: 100%;
+  position: relative;
   &__title {
     display: block;
     font-family: 'Playball';
@@ -30,8 +31,8 @@
     flex-direction: row;
   }
   &__button {
-    right: 90px;
-    top: 110px;
+    right: 75px;
+    top: 95px;
     position: absolute;
     width: 40px;
     min-height: 40px;
@@ -47,10 +48,10 @@
 
     cursor: pointer;
     @media screen and (min-width: 332px) {
-      top: 84px;
+      top: 68px;
     }
     @media screen and (min-width: 600px) {
-      top: 135px;
+      top: 118px;
     }
 
     @media screen and (min-width: 1000px) {

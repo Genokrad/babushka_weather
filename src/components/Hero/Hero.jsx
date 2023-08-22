@@ -1,26 +1,24 @@
-import { Location } from 'components/Location';
 import './hero.scss';
-import { drizzle, grandmother } from 'assets';
-import { SocialShare } from 'components/SocialShare';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { KelvinToCelsium, codeToIcon } from 'utils/converters';
-import { useEffect, useState } from 'react';
+
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { setScreenTogler } from 'features/weather/weatherSlice';
+
+import { Location } from 'components/Location';
+import { SocialShare } from 'components/SocialShare';
+
+import { drizzle, grandmother } from 'assets';
+
+import { KelvinToCelsium, codeToIcon } from 'utils/converters';
 
 const Hero = () => {
   const dispatch = useDispatch();
 
-  const [newCity, setNewCity] = useState('');
+  const weekWeather = useSelector(state => state.weather.weekWeather);
+  const measure = useSelector(state => state.weather.tempertureMeasure);
 
-  const todayWeather = useSelector(state => state.weather.todayWeather);
-  const todayCiti = useSelector(state => state.weather.currentCity);
-  const loading = useSelector(state => state.weather.loading);
-
-  useEffect(() => {
-    setNewCity(todayCiti);
-    // eslint-disable-next-line
-  }, [loading]);
+  let todayWeather = weekWeather?.daily[0];
+  let city = weekWeather.city;
 
   const screenToglerFunction = () => {
     dispatch(setScreenTogler());
@@ -32,7 +30,7 @@ const Hero = () => {
         <h2 onClick={screenToglerFunction} className="hero__title">
           Babushka’s Weather&nbsp;Wisdom
         </h2>
-        <Location todayCiti={newCity} fontColor={'#fff'} />
+        <Location todayCiti={city} fontColor={'#fff'} pageType="Today" />
         <div className="hero__temperture-wrapper">
           <img
             className="hero__temperture-image"
@@ -40,15 +38,14 @@ const Hero = () => {
               todayWeather
                 ? codeToIcon(todayWeather?.weather[0]?.icon)
                 : drizzle
-              // todayWeather
-              //   ? ` https://openweathermap.org/img/wn/${todayWeather?.weather[0]?.icon}@2x.png `
-              //   : drizzle
             }
             alt="weather"
           />
           <p className="hero__temperture">
-            {todayWeather ? KelvinToCelsium(todayWeather?.main?.temp) : 0}°
-            <span>C</span>
+            {todayWeather
+              ? KelvinToCelsium(todayWeather?.temp?.day, measure)
+              : 0}
+            °<span>C</span>
           </p>
           <img className="hero__image" src={grandmother} alt="grandmother" />
         </div>

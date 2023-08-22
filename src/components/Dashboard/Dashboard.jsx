@@ -20,11 +20,14 @@ import { Location } from 'components/Location';
 // ];
 
 const Dashboard = ({
+  icon,
+  city,
   todayDate,
   temperture,
   objIndication,
   pageType,
   wishMessagetext,
+  description,
   week,
 }) => {
   const [showHero, setShowHero] = useState(true);
@@ -45,22 +48,25 @@ const Dashboard = ({
 
   const loading = useSelector(state => state?.weather?.loading);
 
-  const todayCiti = useSelector(state => state?.weather?.currentCity);
-
   return (
     <>
       {!showHero && (
         <Location
-          todayCiti={todayCiti}
+          todayCiti={city}
           fontColor={'#000'}
           todayDate={todayDate}
+          pageType={pageType}
         />
       )}
       {showHero && <WeatherMessage text={wishMessagetext} />}
       <div className="indicators">
         {loading && <Loader />}
 
-        <OneDayWeather temperture={temperture} pageType={pageType} />
+        <OneDayWeather
+          temperture={temperture}
+          icon={icon}
+          description={description}
+        />
         <WeatherIndicator objIndication={objIndication} />
         {!showHero && <GrandmaMessage text={wishMessagetext} />}
       </div>

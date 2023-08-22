@@ -1,79 +1,53 @@
 import './searchBar.scss';
+import Notiflix from 'notiflix';
+
+import { useCallback, useEffect, useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setLoading,
+  setScreenTogler,
+  setWeekWeather,
+} from 'features/weather/weatherSlice';
 
 import { FiSettings, FiArrowRight } from 'react-icons/fi';
 
 import { Button } from 'components/Button';
 import { Input } from 'components/Input';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import {
-  setCurrentCity,
-  setLoading,
-  setScreenTogler,
-  setTodayWeather,
-} from 'features/weather/weatherSlice';
-import Notiflix from 'notiflix';
 
-// const KEY = '2ad6b3b56adc137acaefd4b3855025cf'; // blocked
-const KEY = 'd66525f3861c64edb0280784b35cad3b';
+import { fetchCitiesWeather, fetchCityCoordinates } from 'services';
+import { Measure } from 'components/Measure';
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState('');
+  const curantCity = useSelector(state => state?.weather?.weekWeather?.city);
+  const [inputValue, setInputValue] = useState(curantCity || '');
   const [suggestions, setSuggestions] = useState(null);
   const [showDrop, setShowDrop] = useState(false);
   const [coordinates, setCoordinates] = useState({
     lon: null,
     lat: null,
+    city: null,
   });
+  const [settingTogler, setSettingTogler] = useState(false);
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
-  const citySetter = obj => {
-    dispatch(setCurrentCity(obj));
-  };
-
-  const weatherSetter = obj => {
-    dispatch(setTodayWeather(obj));
-  };
-
-  // const city = useSelector(state => state.weather.currentCity);
-
-  useEffect(() => {
-    if (inputValue) {
-      const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${KEY}`;
-
-      axios
-        .get(apiUrl)
-        .then(response => {
-          const cities = response.data;
-
-          setSuggestions(cities);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error.response);
-          Notiflix.Notify.failure(error.message);
-        });
-    } else {
-      setSuggestions(null);
-    }
-  }, [inputValue]);
 
   const handleInputChange = event => {
     setInputValue(event.target.value);
   };
 
-  const setInput = (value, lat, lon, name) => {
-    setInputValue(value);
-    citySetter({ ...coordinates, lat: lat, lon: lon, name: name });
-    setCoordinates({
-      ...coordinates,
-      lat: lat,
-      lon: lon,
-      name: name,
-    });
-  };
+  const getCoordinates = useCallback(async () => {
+    dispatch(setLoading());
+    const cities = await fetchCityCoordinates(inputValue);
+    dispatch(setLoading());
+    setSuggestions(cities);
+  }, [inputValue, dispatch]);
+
+  useEffect(() => {
+    if (inputValue.trim() !== '') {
+      getCoordinates();
+    }
+  }, [inputValue, getCoordinates]);
 
   const showDropdown = () => {
     setShowDrop(true);
@@ -82,14 +56,13 @@ const SearchBar = () => {
     setShowDrop(false);
   };
 
-  const dropdownMeasureTogler = event => {
-    event.preventDefault();
-    Notiflix.Notify.warning('Not yet ready functionality');
+  const setInput = (value, lat, lon, name) => {
+    setInputValue(value);
+    setCoordinates({ lon: lon, lat: lat, city: name });
   };
 
-  const fetchWeather = event => {
+  const fetchWeather = async event => {
     event.preventDefault();
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${KEY}`;
 
     if (!suggestions) {
       Notiflix.Notify.failure(
@@ -102,24 +75,35 @@ const SearchBar = () => {
       return;
     }
 
-    axios
-      .get(apiUrl)
-      .then(response => {
-        dispatch(setLoading());
-        const weather = response.data;
+    if (
+      coordinates.lat === null &&
+      coordinates.lon === null &&
+      suggestions.length > 0
+    ) {
+      dispatch(setLoading());
+      const weather = await fetchCitiesWeather(
+        suggestions[0].lat,
+        suggestions[0].lon
+      );
+      dispatch(setWeekWeather({ ...weather, city: suggestions[0].name }));
+      dispatch(setLoading());
 
-        weatherSetter(weather);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error.response);
-        Notiflix.Notify.failure(error.response);
-      })
-      .finally(dispatch(setLoading()));
-    setInputValue('');
+      return;
+    }
+
+    dispatch(setLoading());
+    const weather = await fetchCitiesWeather(coordinates.lat, coordinates.lon);
+    dispatch(setWeekWeather({ ...weather, city: coordinates.city }));
+    dispatch(setLoading());
   };
 
   const screenToglerFunction = () => {
     dispatch(setScreenTogler());
+  };
+
+  const dropdownMeasureTogler = event => {
+    event.preventDefault();
+    setSettingTogler(!settingTogler);
   };
 
   return (
@@ -152,9 +136,10 @@ const SearchBar = () => {
           fun={dropdownMeasureTogler}
           className="search-bar__button-settings"
           icon={FiSettings}
-          type={''}
+          type={'button'}
           iconClass={'search-bar__icon-settings'}
         />
+        {settingTogler && <Measure />}
       </div>
 
       <div className="search-bar__divider"></div>
