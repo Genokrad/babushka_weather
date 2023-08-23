@@ -18,11 +18,11 @@ import {
 const Hero = () => {
   const dispatch = useDispatch();
 
-  const weekWeather = useSelector(state => state.weather.weekWeather);
-  const measure = useSelector(state => state.weather.tempertureMeasure);
+  const weekWeather = useSelector(state => state?.weather?.weekWeather);
+  const measure = useSelector(state => state?.weather?.tempertureMeasure);
 
   let todayWeather = weekWeather?.daily[0];
-  let city = weekWeather.city;
+  let city = weekWeather?.city;
 
   const screenToglerFunction = () => {
     dispatch(setScreenTogler());

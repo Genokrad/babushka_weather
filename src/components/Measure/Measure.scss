@@ -2,6 +2,7 @@
   position: absolute;
   top: 155px;
   right: 0;
+  z-index: 2;
   @media screen and (min-width: 332px) {
     top: 135px;
     right: 0;
@@ -13,7 +14,6 @@
   @media screen and (min-width: 1400px) {
     top: 70px;
     right: 0;
-    z-index: 2;
   }
 
   background-color: #fff;

@@ -13,7 +13,7 @@ const TodayPage = () => {
   const measure = useSelector(state => state.weather.tempertureMeasure);
 
   const weekWeather = useSelector(state => state.weather.weekWeather);
-  const todayWeather = weekWeather.daily[0];
+  const todayWeather = weekWeather?.daily[0];
   const todayTemperture = KelvinToCelsium(
     todayWeather?.temp?.[convertingTimeToWeather()],
     measure
@@ -54,12 +54,13 @@ const TodayPage = () => {
     <>
       <Dashboard
         icon={todayWeather?.weather[0]?.icon}
-        city={weekWeather.city}
+        city={weekWeather?.city}
         temperture={todayTemperture}
         objIndication={objIndication}
         pageType={'Today'}
         wishMessagetext={wishMessagetext}
         description={description}
+        allDay={{ temp: todayWeather?.temp, mark: measure }}
       />
     </>
   );

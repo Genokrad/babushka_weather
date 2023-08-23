@@ -117,7 +117,7 @@ const convertingTimeToWeather = () => {
   return `${periodOfTheDay}`;
 };
 
-console.log(convertingTimeToWeather());
+// console.log(convertingTimeToWeather());
 
 const KelvinToCelsium = (number, mark) => {
   if (mark === 'celsius') {

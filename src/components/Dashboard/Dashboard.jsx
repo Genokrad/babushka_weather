@@ -28,6 +28,7 @@ const Dashboard = ({
   pageType,
   wishMessagetext,
   description,
+  allDay,
   week,
 }) => {
   const [showHero, setShowHero] = useState(true);
@@ -63,6 +64,7 @@ const Dashboard = ({
         {loading && <Loader />}
 
         <OneDayWeather
+          allDay={allDay}
           temperture={temperture}
           icon={icon}
           description={description}

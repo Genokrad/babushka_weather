@@ -60,6 +60,7 @@ const TomorrowPage = () => {
         wishMessagetext={wishMessagetext}
         description={description}
         city={weekWeather.city}
+        allDay={{ temp: tomorrowWeather?.temp, mark: measure }}
       />
     </>
   );
