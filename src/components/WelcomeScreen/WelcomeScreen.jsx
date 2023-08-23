@@ -97,7 +97,6 @@ const WelcomeScreen = ({ togleWelocmeScreen, weatherSetter, citySetter }) => {
 
   return (
     <div className="welcome-screen">
-      {console.log(suggestions)}
       {isLoading && <Loader />}
       <div className="welcome-screen__text-box">
         <h1 className="welcome-screen__title">

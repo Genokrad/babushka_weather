@@ -19,8 +19,6 @@ const CustomCheckbox = () => {
   const handleOptionChange = id => {
     setSelectedOption(id);
 
-    console.log(selectedOption);
-
     dispatch(setTempertureMeasure(id));
   };
 
