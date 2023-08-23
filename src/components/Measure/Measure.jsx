@@ -3,12 +3,16 @@ import './Measure.scss';
 import React, { useState } from 'react';
 
 import { FiCheck } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CustomCheckbox = () => {
   const dispatch = useDispatch();
 
-  const [selectedOption, setSelectedOption] = useState('celsius');
+  const measureCurrentValue = useSelector(
+    state => state.weather.tempertureMeasure
+  );
+
+  const [selectedOption, setSelectedOption] = useState(measureCurrentValue);
 
   const options = [
     { id: 'celsius', label: 'Celsius', color: '89A755' },
