@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
-const apiKey = process.env.REACT_APP_API_KEY;
+// const apiKey = process.env.REACT_APP_API_KEY;
+const apiKey = '2ad6b3b56adc137acaefd4b3855025cf';
 
 const fetchCitiesWeather = async (lat, lon) => {
   try {

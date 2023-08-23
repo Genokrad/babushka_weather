@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
-const apiKey = process.env.REACT_APP_API_KEYLOC;
-// const KEY = 'd66525f3861c64edb0280784b35cad3b';
+// const apiKey = process.env.REACT_APP_API_KEYLOC;
+const apiKey = '2ad6b3b56adc137acaefd4b3855025cf';
 
 const fetchCityCoordinates = async city => {
   try {
