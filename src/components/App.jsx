@@ -1,3 +1,5 @@
+import './app.scss';
+
 import { Routes, Route } from 'react-router-dom';
 
 import { Layout } from './Layout';

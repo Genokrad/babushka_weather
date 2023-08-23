@@ -13,7 +13,7 @@ const OneDay = ({ day }) => {
   const measure = useSelector(state => state.weather.tempertureMeasure);
 
   return (
-    <li className="day-card">
+    <li className="day-card fade-in-bottom">
       <div>
         <p className="day-card__day">{dateToDayOfWeek(day.dt)}</p>
         <p className="day-card__date">{`${convertToDate(

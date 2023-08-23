@@ -13,7 +13,7 @@ const schema = [
 
 const WeatherIndicator = ({ objIndication }) => {
   return (
-    <ul className="indicator">
+    <ul className="indicator fade-in-bottom">
       {objIndication
         ? objIndication?.map(indicator => (
             <Item key={nanoid()} indicator={indicator} />

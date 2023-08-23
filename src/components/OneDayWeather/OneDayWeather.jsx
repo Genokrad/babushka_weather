@@ -7,7 +7,7 @@ import { codeToIcon } from 'utils/converters';
 
 const OneDayWeather = ({ temperture, description, icon }) => {
   return (
-    <div className="todayWeather">
+    <div className="todayWeather fade-in-bottom">
       <img
         className="todayWeather__image"
         src={icon ? codeToIcon(icon) : drizzle}
