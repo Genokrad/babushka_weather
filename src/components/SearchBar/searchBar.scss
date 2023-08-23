@@ -89,6 +89,12 @@
     border: none;
     width: 56px;
     height: 56px;
+    cursor: pointer;
+    color: var(--text-white-color);
+    background-color: var(--background-color-green);
+    &:hover {
+      background-color: var(--background-color-orange);
+    }
   }
 
   &__icon-settings {
