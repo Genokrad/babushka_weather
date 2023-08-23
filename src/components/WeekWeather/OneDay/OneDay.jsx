@@ -27,7 +27,7 @@ const OneDay = ({ day }) => {
           alt="mark"
         />
         <p className="day-card__temp">
-          {KelvinToCelsium(day.temp.day, measure)}°
+          {KelvinToCelsium(day.temp.day, measure)}
         </p>
       </div>
     </li>

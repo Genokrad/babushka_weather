@@ -98,13 +98,13 @@ const DateNow = () => {
 
 const KelvinToCelsium = (number, mark) => {
   if (mark === 'celsius') {
-    return Math.round(number - 273.15);
+    return `${Math.round(number - 273.15)}°C`;
   }
   if (mark === 'fahrenheit') {
-    return Math.round(((number - 273.15) * 9) / 5 + 32);
+    return `${Math.round(((number - 273.15) * 9) / 5 + 32)}°F`;
   }
   if (mark === 'kelvin') {
-    return Math.round(number);
+    return `${Math.round(number)}K`;
   }
 };
 

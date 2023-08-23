@@ -14,9 +14,7 @@ const OneDayWeather = ({ temperture, description, icon }) => {
         alt="mark"
       />
 
-      <p className="todayWeather__text">
-        {temperture ? temperture : 0}°<span>C</span>
-      </p>
+      <p className="todayWeather__text">{temperture ? temperture : 0}</p>
 
       <p className="todayWeather__description">
         {description ? description : ''}

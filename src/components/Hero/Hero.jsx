@@ -45,7 +45,6 @@ const Hero = () => {
             {todayWeather
               ? KelvinToCelsium(todayWeather?.temp?.day, measure)
               : 0}
-            °<span>C</span>
           </p>
           <img className="hero__image" src={grandmother} alt="grandmother" />
         </div>
