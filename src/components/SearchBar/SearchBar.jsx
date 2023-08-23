@@ -37,11 +37,11 @@ const SearchBar = () => {
   };
 
   const getCoordinates = useCallback(async () => {
-    dispatch(setLoading());
+    // dispatch(setLoading());
     const cities = await fetchCityCoordinates(inputValue);
-    dispatch(setLoading());
+    // dispatch(setLoading());
     setSuggestions(cities);
-  }, [inputValue, dispatch]);
+  }, [inputValue]);
 
   useEffect(() => {
     if (inputValue.trim() !== '') {
