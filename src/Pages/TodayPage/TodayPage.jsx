@@ -3,19 +3,29 @@
 import { Dashboard } from 'components/Dashboard';
 
 import { useSelector } from 'react-redux';
-import { KelvinToCelsium, wishMessage } from 'utils/converters';
+import {
+  KelvinToCelsium,
+  convertingTimeToWeather,
+  wishMessage,
+} from 'utils/converters';
 
 const TodayPage = () => {
   const measure = useSelector(state => state.weather.tempertureMeasure);
 
   const weekWeather = useSelector(state => state.weather.weekWeather);
   const todayWeather = weekWeather.daily[0];
-  const todayTemperture = KelvinToCelsium(todayWeather?.temp?.day, measure);
-  const feelsLike = KelvinToCelsium(todayWeather?.feels_like?.day, measure);
+  const todayTemperture = KelvinToCelsium(
+    todayWeather?.temp?.[convertingTimeToWeather()],
+    measure
+  );
+  const feelsLike = KelvinToCelsium(
+    todayWeather?.feels_like?.[convertingTimeToWeather()],
+    measure
+  );
   const description = todayWeather?.weather[0]?.description;
 
   const objIndication = [
-    { text: 'Feels like:', value: `${feelsLike ? feelsLike : '0'}°C` },
+    { text: 'Feels like:', value: `${feelsLike ? feelsLike : '0'}` },
     {
       text: 'Humidity:',
       value: `${todayWeather ? todayWeather?.humidity : '0'}%`,
@@ -34,7 +44,7 @@ const TodayPage = () => {
     },
     {
       text: 'possibility of precipitation:',
-      value: `${todayWeather ? todayWeather?.pop * 100 : '0'} %`,
+      value: `${todayWeather ? Math.round(todayWeather?.pop * 100) : '0'} %`,
     },
   ];
 

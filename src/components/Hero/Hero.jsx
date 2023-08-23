@@ -9,7 +9,11 @@ import { SocialShare } from 'components/SocialShare';
 
 import { drizzle, grandmother } from 'assets';
 
-import { KelvinToCelsium, codeToIcon } from 'utils/converters';
+import {
+  KelvinToCelsium,
+  codeToIcon,
+  convertingTimeToWeather,
+} from 'utils/converters';
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -43,7 +47,10 @@ const Hero = () => {
           />
           <p className="hero__temperture">
             {todayWeather
-              ? KelvinToCelsium(todayWeather?.temp?.day, measure)
+              ? KelvinToCelsium(
+                  todayWeather?.temp[convertingTimeToWeather()],
+                  measure
+                )
               : 0}
           </p>
           <img className="hero__image" src={grandmother} alt="grandmother" />

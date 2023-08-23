@@ -24,7 +24,7 @@ const TomorrowPage = () => {
   const description = tomorrowWeather?.weather[0]?.description;
 
   const objIndication = [
-    { text: 'Feels like:', value: `${feelsLike ? feelsLike : '0'}°C` },
+    { text: 'Feels like:', value: `${feelsLike ? feelsLike : '0'}` },
     {
       text: 'Humidity:',
       value: `${tomorrowWeather ? tomorrowWeather?.humidity : '0'}%`,
@@ -43,7 +43,9 @@ const TomorrowPage = () => {
     },
     {
       text: 'possibility of precipitation:',
-      value: `${tomorrowWeather ? tomorrowWeather?.pop * 100 : '0'} %`,
+      value: `${
+        tomorrowWeather ? Math.round(tomorrowWeather?.pop * 100) : '0'
+      } %`,
     },
   ];
 

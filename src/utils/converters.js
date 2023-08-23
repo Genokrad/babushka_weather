@@ -96,6 +96,29 @@ const DateNow = () => {
   return currentTimestamp;
 };
 
+const convertingTimeToWeather = () => {
+  const now = new Date();
+  const hours = Number(now.getHours().toString().padStart(2, '0'));
+
+  let periodOfTheDay = 'day';
+
+  if (hours > 0 && hours < 6) {
+    periodOfTheDay = 'nigh';
+  }
+  if (hours > 6 && hours < 10) {
+    periodOfTheDay = 'morn';
+  }
+  if (hours > 10 && hours < 18) {
+    periodOfTheDay = 'day';
+  }
+  if (hours > 18 && hours < 24) {
+    periodOfTheDay = 'eve';
+  }
+  return `${periodOfTheDay}`;
+};
+
+console.log(convertingTimeToWeather());
+
 const KelvinToCelsium = (number, mark) => {
   if (mark === 'celsius') {
     return `${Math.round(number - 273.15)}°C`;
@@ -182,4 +205,5 @@ export {
   wishMessage,
   convertToFullFormatData,
   converToMonth,
+  convertingTimeToWeather,
 };
