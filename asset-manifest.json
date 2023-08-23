@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/babushka_weather/static/css/main.87876800.css",
-    "main.js": "/babushka_weather/static/js/main.a838194a.js",
+    "main.js": "/babushka_weather/static/js/main.c3fe6f24.js",
     "static/media/Playball-Regular.ttf": "/babushka_weather/static/media/Playball-Regular.71988dd7eaaef16a92b6.ttf",
     "static/media/grandmother.svg": "/babushka_weather/static/media/grandmother.f9a41bfa9783f60d62be85181a470f01.svg",
     "static/media/Manrope-SemiBold.ttf": "/babushka_weather/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
@@ -40,10 +40,10 @@
     "static/media/triangle.svg": "/babushka_weather/static/media/triangle.23ca857ef5d28c7d6f0e6d63ca81649d.svg",
     "static/media/triangleVertical.svg": "/babushka_weather/static/media/triangleVertical.c54e511d458d11632de78f7f6b101d6a.svg",
     "main.87876800.css.map": "/babushka_weather/static/css/main.87876800.css.map",
-    "main.a838194a.js.map": "/babushka_weather/static/js/main.a838194a.js.map"
+    "main.c3fe6f24.js.map": "/babushka_weather/static/js/main.c3fe6f24.js.map"
   },
   "entrypoints": [
     "static/css/main.87876800.css",
-    "static/js/main.a838194a.js"
+    "static/js/main.c3fe6f24.js"
   ]
 }
